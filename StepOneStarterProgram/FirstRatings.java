@@ -98,7 +98,7 @@ public class FirstRatings {
             System.out.println(m);
         }*/
     }
-    
+    //fix this 
     public void testLoadMoviesByDirectors() {
         ArrayList<Movie> movies = loadMovies("./data/ratedmovies_short.csv");
         MovieFilter f = new FilterMovieByDirector();
