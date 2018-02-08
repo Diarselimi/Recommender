@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+package main;
 
 // An immutable passive data object (PDO) to represent item data
 public class Movie {

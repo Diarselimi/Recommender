@@ -1,6 +1,9 @@
 import edu.duke.*;
+import filter.*;
+
 import java.util.*;
 import org.apache.commons.csv.*;
+import main.*;
 
 public class FirstRatings {
     
@@ -25,24 +28,14 @@ public class FirstRatings {
         return movies;
     }
     
-    public ArrayList<Movie> filterMoviesByGenre(String genre, ArrayList<Movie> allMovies) {
-        ArrayList<Movie> movies = new ArrayList<Movie>();
-        for (Movie mv: allMovies) {
-            if (mv.getGenres().contains(genre)) {
-                movies.add(mv);
-            }
-        }
-        return movies;
-    }
-    
-    public ArrayList<Movie> filterMoviesByMinutes(int minutes, ArrayList<Movie> allMovies) {
-        ArrayList<Movie> movies = new ArrayList<Movie>();
-        for (Movie mv: allMovies) {
-            if (mv.getMinutes() > minutes) {
-                movies.add(mv);
-            }
-        }
-        return movies;
+    public ArrayList<Movie> filterMovies(ArrayList<Movie> movies, MovieFilter filter) {
+    		ArrayList<Movie> out = new ArrayList<Movie>();
+    		for(Movie m: movies) {
+    			if(filter.satisfies(m)) {
+    				out.add(m);
+    			}
+    		}
+    		return out;
     }
     
     public ArrayList<String> filterMoviesByDirector(ArrayList<Movie> allMovies) {
@@ -88,7 +81,8 @@ public class FirstRatings {
     
     public void testLoadMoviesByGenre() {
         ArrayList<Movie> movies = loadMovies("./data/ratedmovies_short.csv");
-        movies = filterMoviesByGenre("Comedy", movies);
+        MovieFilter f = new FilterMovieByGenre("Comedy");
+        movies = filterMovies(movies, f);
         System.out.println("Total Comedy movies in the list are : "+movies.size());
         /*for(Movie m: movies) {
             System.out.println(m);
@@ -97,7 +91,8 @@ public class FirstRatings {
     
     public void testLoadMoviesByMinutes() {
         ArrayList<Movie> movies = loadMovies("./data/ratedmovies_short.csv");
-        movies = filterMoviesByMinutes(150, movies);
+        MovieFilter f = new FilterMovieByMinutes(150);
+        movies = filterMovies(movies, f);
         System.out.println("Total movies in the list longer than 150min are : "+movies.size());
         /*for(Movie m: movies) {
             System.out.println(m);
@@ -106,7 +101,8 @@ public class FirstRatings {
     
     public void testLoadMoviesByDirectors() {
         ArrayList<Movie> movies = loadMovies("./data/ratedmovies_short.csv");
-        movies = filterMoviesByDirectors(movies);
+        MovieFilter f = new FilterMovieByDirector();
+        movies = filterMovies(movies, f);
         System.out.println("Total directors with max movies played are : "+movies.size());
         /*for(Movie m: movies) {
             System.out.println(m);
