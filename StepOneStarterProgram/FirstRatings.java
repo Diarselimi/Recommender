@@ -83,11 +83,18 @@ public class FirstRatings {
         ArrayList<Rater> raters = new ArrayList<Rater>();
         FileResource fr = new FileResource(filename);
         for (CSVRecord row: fr.getCSVParser()) {
-            Movie rater = new Rater();
-            raters.add(rater);
+            Rater rater = new Rater(row.get("rater_id"));
+            if(!raters.contains(rater)) { //figure this out !!!
+            		raters.add(rater);
+            }
         }
         
         
         return raters;
+    }
+    
+    public void testLoadRaters() {
+    		ArrayList<Rater> raters = loadRaters("./data/ratings_short.csv");
+    		System.out.println("Total number of raters : "+raters.size());
     }
 }

@@ -9,7 +9,9 @@ public class Runner {
 //		fr.testLoadRaters();
 //		fr.testFilterRaterByRater();
 //		fr.testGetMaxRatingsRater();
-		fr.testLoadMoviesByMaxPlaysDirectors();
+//		fr.testLoadMoviesByMaxPlaysDirectors();
+		
+		fr.testLoadRaters();
 	}
 
 }
