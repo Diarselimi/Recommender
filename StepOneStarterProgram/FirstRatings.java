@@ -38,38 +38,6 @@ public class FirstRatings {
     		return out;
     }
     
-    public ArrayList<String> filterMoviesByDirector(ArrayList<Movie> allMovies) {
-        ArrayList<Movie> movies = new ArrayList<Movie>();
-        HashMap<String, Integer> directorMovies= new HashMap<String, Integer>();
-        for (Movie mv: allMovies) {
-            String[] directors = mv.getDirector().split(",");
-            try {
-                for(String director: directors) {
-                    if(directorMovies.containsKey(director.trim())) {
-                        int plays = directorMovies.get(director.trim()) + 1;
-                        directorMovies.put(director.trim(), plays);
-                    } else {
-                        directorMovies.put(director.trim(), 1);
-                    }   
-                } 
-            } catch (Exception e) {
-                //directorMovies.put(director.trim(), 1);
-            }
-        }
-        int maxMoviesPlayed = 0;
-        for(int k=0; k < directorMovies.size(); k++) {
-            if (directorMovies.get(k) > maxMoviesPlayed) {
-                maxMoviesPlayed = directorMovies.get(k);
-            }
-        }
-        ArrayList<String> directorsMaxPlays = new ArrayList<String>();
-        for(String key: directorMovies.keySet()) {
-            if(directorMovies.get(key) == maxMoviesPlayed) {
-                directorsMaxPlays.add(key);
-            }
-        }
-        return directorsMaxPlays;
-    }
     
     public void testLoadMovies() {
         ArrayList<Movie> movies = loadMovies("./data/ratedmoviesfull.csv");
@@ -99,13 +67,27 @@ public class FirstRatings {
         }*/
     }
     //fix this 
-    public void testLoadMoviesByDirectors() {
+    public void testLoadMoviesByMaxPlaysDirectors() {
         ArrayList<Movie> movies = loadMovies("./data/ratedmovies_short.csv");
-        MovieFilter f = new FilterMovieByDirector();
+        MovieFilter f = new FilterMovieByMaxDirectors(movies);
         movies = filterMovies(movies, f);
         System.out.println("Total directors with max movies played are : "+movies.size());
         /*for(Movie m: movies) {
-            System.out.println(m);
+            System.out.println(m.getDirector());
         }*/
+    }
+    
+    //=================== END OF MOVIES LOADERS ====================//
+    
+    public ArrayList<Rater> loadRaters(String filename) {
+        ArrayList<Rater> raters = new ArrayList<Rater>();
+        FileResource fr = new FileResource(filename);
+        for (CSVRecord row: fr.getCSVParser()) {
+            Movie rater = new Rater();
+            raters.add(rater);
+        }
+        
+        
+        return raters;
     }
 }
