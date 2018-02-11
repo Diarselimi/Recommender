@@ -59,7 +59,4 @@ public class Rater {
         return list;
     }
     
-    public String toString() {
-    		return myID;
-    }
 }
