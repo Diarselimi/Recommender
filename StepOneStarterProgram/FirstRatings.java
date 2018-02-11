@@ -135,7 +135,9 @@ public class FirstRatings {
     		System.out.println("Total raters with maximum number of ratings are: "+ratersByMax.size());
     		
     		//filter by movie
-
+    		iRaterFilter mof = new FilterByMovie("1798709");
+    		ArrayList<Rater> ratersByMovie = filterRaters(raters, mof);
+    		System.out.println("Total ratings for movie are: "+ratersByMovie.size());
     		
     }
 }
