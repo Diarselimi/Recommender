@@ -84,17 +84,36 @@ public class FirstRatings {
         FileResource fr = new FileResource(filename);
         for (CSVRecord row: fr.getCSVParser()) {
             Rater rater = new Rater(row.get("rater_id"));
-            if(!raters.contains(rater)) { //figure this out !!!
+            int raterKey = indexOf(rater, raters);
+            
+            if(raterKey == -1) { //figure this out !!!
             		raters.add(rater);
+            		raterKey = indexOf(rater, raters);
             }
+            raters.get(raterKey).addRating(
+            		row.get("movie_id"), 
+            		Double.parseDouble(row.get("rating"))
+            	);
         }
         
         
         return raters;
     }
     
+    private int indexOf(Rater rater, ArrayList<Rater> raters) {
+    		for (int k=0; k < raters.size(); k++) {
+    			if(rater.getID().equals(raters.get(k).getID())) {
+    				return k;
+    			}
+    		}
+    		return -1;
+    }
+    
     public void testLoadRaters() {
     		ArrayList<Rater> raters = loadRaters("./data/ratings_short.csv");
     		System.out.println("Total number of raters : "+raters.size());
+    		for(Rater rater: raters ) {
+    			System.out.println(rater.getItemsRated().size()+ " total ratings");
+    		}
     }
 }
