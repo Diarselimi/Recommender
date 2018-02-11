@@ -129,7 +129,13 @@ public class FirstRatings {
     		ArrayList<Rater> ratersByID = filterRaters(raters, f);
     		System.out.println("Raters with id 2 found in total: "+ratersByID.size()+" and it has :"+ratersByID.get(0).numRatings()+" ratings");
     		
+    		//filter by max ratings
+    		iRaterFilter mf = new FilterByMax(raters);
+    		ArrayList<Rater> ratersByMax = filterRaters(raters, mf);
+    		System.out.println("Total raters with maximum number of ratings are: "+ratersByMax.size());
     		
+    		//filter by movie
+
     		
     }
 }
