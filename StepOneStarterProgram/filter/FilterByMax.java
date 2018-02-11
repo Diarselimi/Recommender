@@ -2,7 +2,7 @@ package filter;
 import java.util.ArrayList;
 import main.*;
 
-public class FilterByMax implements RaterFilter {
+public class FilterByMax implements iRaterFilter {
 	private int max = 0;
 	public FilterByMax(ArrayList<Rater> raters) {
 		for(Rater r: raters) {

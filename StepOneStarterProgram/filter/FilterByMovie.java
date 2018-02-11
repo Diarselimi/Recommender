@@ -1,7 +1,7 @@
 package filter;
 import main.*;
 
-public class FilterByMovie implements RaterFilter {
+public class FilterByMovie implements iRaterFilter {
 	private String movie;
 	public FilterByMovie(String movie) {
 		this.movie = movie;

@@ -1,7 +1,7 @@
 package filter;
 import main.*;
 
-public class FilterByRater implements RaterFilter {
+public class FilterByRater implements iRaterFilter {
 	private String raterId;
 	public FilterByRater(String raterId) {
 		this.raterId = raterId;

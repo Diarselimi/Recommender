@@ -1,6 +1,6 @@
 package filter;
 import main.*;
 
-public interface RaterFilter {
+public interface iRaterFilter {
 	public boolean satisfies(Rater rater);
 }

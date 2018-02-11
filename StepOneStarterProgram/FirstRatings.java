@@ -100,6 +100,16 @@ public class FirstRatings {
         return raters;
     }
     
+    public ArrayList<Rater> filterRaters(ArrayList<Rater> raters, iRaterFilter filter) {
+		ArrayList<Rater> out = new ArrayList<Rater>();
+		for(Rater r: raters) {
+			if(filter.satisfies(r)) {
+				out.add(r);
+			}
+		}
+		return out;
+    }
+    
     private int indexOf(Rater rater, ArrayList<Rater> raters) {
     		for (int k=0; k < raters.size(); k++) {
     			if(rater.getID().equals(raters.get(k).getID())) {
@@ -112,8 +122,14 @@ public class FirstRatings {
     public void testLoadRaters() {
     		ArrayList<Rater> raters = loadRaters("./data/ratings_short.csv");
     		System.out.println("Total number of raters : "+raters.size());
-    		for(Rater rater: raters ) {
-    			System.out.println(rater.getItemsRated().size()+ " total ratings");
-    		}
+//    		for(Rater rater: raters ) {
+//    			System.out.println(rater.getItemsRated().size()+ " total ratings");
+//    		}
+    		iRaterFilter f = new FilterByRater("2");
+    		ArrayList<Rater> ratersByID = filterRaters(raters, f);
+    		System.out.println("Raters with id 2 found in total: "+ratersByID.size()+" and it has :"+ratersByID.get(0).numRatings()+" ratings");
+    		
+    		
+    		
     }
 }
