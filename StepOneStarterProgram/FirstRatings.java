@@ -86,7 +86,7 @@ public class FirstRatings {
             Rater rater = new Rater(row.get("rater_id"));
             int raterKey = indexOf(rater, raters);
             
-            if(raterKey == -1) { //figure this out !!!
+            if(raterKey == -1) {
             		raters.add(rater);
             		raterKey = indexOf(rater, raters);
             }
@@ -119,6 +119,18 @@ public class FirstRatings {
     		return -1;
     }
     
+    private ArrayList<String> findUniqueMovies(ArrayList<Rater> raters) {
+    		ArrayList<String> movies = new ArrayList<String>();
+    		for(Rater rater: raters) {
+    			for(String movie_id: rater.getItemsRated()) {
+    				if(!movies.contains(movie_id)) {
+    					movies.add(movie_id);
+    				}
+    			}
+    		}
+    		return movies;
+    }
+    
     public void testLoadRaters() {
     		ArrayList<Rater> raters = loadRaters("./data/ratings_short.csv");
     		System.out.println("Total number of raters : "+raters.size());
@@ -138,6 +150,10 @@ public class FirstRatings {
     		iRaterFilter mof = new FilterByMovie("1798709");
     		ArrayList<Rater> ratersByMovie = filterRaters(raters, mof);
     		System.out.println("Total ratings for movie are: "+ratersByMovie.size());
+    		
+    		// filter by unique movies
+    		ArrayList<String> movies = findUniqueMovies(raters);
+    		System.out.println("Total unique movies rated are: "+movies.size());
     		
     }
 }
