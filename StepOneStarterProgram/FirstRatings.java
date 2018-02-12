@@ -48,7 +48,7 @@ public class FirstRatings {
     }
     
     public void testLoadMoviesByGenre() {
-        ArrayList<Movie> movies = loadMovies("./data/ratedmovies_short.csv");
+        ArrayList<Movie> movies = loadMovies("./data/ratedmoviesfull.csv");
         MovieFilter f = new FilterMovieByGenre("Comedy");
         movies = filterMovies(movies, f);
         System.out.println("Total Comedy movies in the list are : "+movies.size());
@@ -58,7 +58,7 @@ public class FirstRatings {
     }
     
     public void testLoadMoviesByMinutes() {
-        ArrayList<Movie> movies = loadMovies("./data/ratedmovies_short.csv");
+        ArrayList<Movie> movies = loadMovies("./data/ratedmoviesfull.csv");
         MovieFilter f = new FilterMovieByMinutes(150);
         movies = filterMovies(movies, f);
         System.out.println("Total movies in the list longer than 150min are : "+movies.size());
@@ -68,7 +68,7 @@ public class FirstRatings {
     }
     //fix this 
     public void testLoadMoviesByMaxPlaysDirectors() {
-        ArrayList<Movie> movies = loadMovies("./data/ratedmovies_short.csv");
+        ArrayList<Movie> movies = loadMovies("./data/ratedmoviesfull.csv");
         MovieFilter f = new FilterMovieByMaxDirectors(movies);
         movies = filterMovies(movies, f);
         System.out.println("Total directors with max movies played are : "+movies.size());
@@ -132,19 +132,20 @@ public class FirstRatings {
     }
     
     public void testLoadRaters() {
-    		ArrayList<Rater> raters = loadRaters("./data/ratings_short.csv");
+    		ArrayList<Rater> raters = loadRaters("./data/ratings.csv");
     		System.out.println("Total number of raters : "+raters.size());
 //    		for(Rater rater: raters ) {
 //    			System.out.println(rater.getItemsRated().size()+ " total ratings");
 //    		}
-    		iRaterFilter f = new FilterByRater("2");
+    		iRaterFilter f = new FilterByRater("193");
     		ArrayList<Rater> ratersByID = filterRaters(raters, f);
-    		System.out.println("Raters with id 2 found in total: "+ratersByID.size()+" and it has :"+ratersByID.get(0).numRatings()+" ratings");
+    		System.out.println("Raters with id 193 found in total: "+ratersByID.size()+" and it has :"+ratersByID.get(0).numRatings()+" ratings");
     		
     		//filter by max ratings
     		iRaterFilter mf = new FilterByMax(raters);
     		ArrayList<Rater> ratersByMax = filterRaters(raters, mf);
     		System.out.println("Total raters with maximum number of ratings are: "+ratersByMax.size());
+    		System.out.println("Rater that rated most movies is "+ratersByMax.get(0).getID());
     		
     		//filter by movie
     		iRaterFilter mof = new FilterByMovie("1798709");
