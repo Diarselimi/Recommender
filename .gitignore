@@ -27,3 +27,6 @@ StepOneStarterProgram/package.bluej
 *.class
 *.bluej
 .DS_Store
+*.swp
+.idea
+Recommender.iml

@@ -15,7 +15,20 @@ public class SecondRatings {
     
     public SecondRatings() {
         // default constructor
-//        this("ratedmoviesfull.csv", "ratings.csv");
+        this("ratedmoviesfull.csv", "ratings.csv");
     }
     
+	public SecondRatings(String firstFile, String secondFile) {
+		FirstRatings first = new FirstRatings();
+		myMovies = first.loadMovies(firstFile);	
+		myRaters = first.loadRaters(secondFile);
+	}	
+	
+	public int getMovieSize() {
+		return myMovies.size();
+	}
+	
+	public int getRaterSize(){
+		return myRaters.size();
+	}
 }
