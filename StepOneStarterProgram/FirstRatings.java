@@ -11,6 +11,7 @@ public class FirstRatings {
         ArrayList<Movie> movies = new ArrayList<Movie>();
         FileResource fr = new FileResource(filename);
         for (CSVRecord row: fr.getCSVParser()) {
+        	try {
             Movie mv = new Movie(
                 row.get("id"), 
                 row.get("title"), 
@@ -22,6 +23,9 @@ public class FirstRatings {
                 Integer.parseInt(row.get("minutes"))
             );
             movies.add(mv);
+        	}catch(Exception e) {
+        		
+        	}
         }
         
         
@@ -83,6 +87,7 @@ public class FirstRatings {
         ArrayList<Rater> raters = new ArrayList<Rater>();
         FileResource fr = new FileResource(filename);
         for (CSVRecord row: fr.getCSVParser()) {
+        	try {
             Rater rater = new Rater(row.get("rater_id"));
             int raterKey = indexOf(rater, raters);
             
@@ -94,6 +99,9 @@ public class FirstRatings {
             		row.get("movie_id"), 
             		Double.parseDouble(row.get("rating"))
             	);
+        	}catch(Exception e) {
+        		System.out.println(e.getMessage());
+        	}
         }
         
         
