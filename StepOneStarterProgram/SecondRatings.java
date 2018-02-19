@@ -41,6 +41,15 @@ public class SecondRatings {
 		return "The movie ID:"+id+" was not found!";
 	}
 	
+	public String getID(String title) {
+		for(Movie movie: myMovies) {
+			if(movie.getTitle().contains(title)) {
+				return movie.getID();
+			}
+		}
+		return "NO SUCH TITLE.";
+	}
+	
 	public ArrayList<Rating> getAverageRatings(int minimalRaters) {
 		ArrayList<Rating> moviesAvgRatings = new ArrayList<Rating>();
 		
