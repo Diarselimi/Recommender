@@ -87,21 +87,21 @@ public class FirstRatings {
         ArrayList<Rater> raters = new ArrayList<Rater>();
         FileResource fr = new FileResource(filename);
         for (CSVRecord row: fr.getCSVParser()) {
-        	try {
-            Rater rater = new PlainRater(row.get("rater_id"));
-            int raterKey = indexOf(rater, raters);
-            
-            if(raterKey == -1) {
-            		raters.add(rater);
-            		raterKey = indexOf(rater, raters);
-            }
-            raters.get(raterKey).addRating(
-            		row.get("movie_id"), 
-            		Double.parseDouble(row.get("rating"))
-            	);
-        	}catch(Exception e) {
-        		System.out.println(e.getMessage());
-        	}
+	        	try {
+	            Rater rater = new EfficientRater(row.get("rater_id"));
+	            int raterKey = indexOf(rater, raters);
+	            
+	            if(raterKey == -1) {
+	            		raters.add(rater);
+	            		raterKey = indexOf(rater, raters);
+	            }
+	            raters.get(raterKey).addRating(
+	            		row.get("movie_id"), 
+	            		Double.parseDouble(row.get("rating"))
+	            	);
+	        	}catch(Exception e) {
+	        		System.out.println(e.getMessage());
+	        	}
         }
         
         
