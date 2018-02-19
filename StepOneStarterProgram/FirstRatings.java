@@ -88,7 +88,7 @@ public class FirstRatings {
         FileResource fr = new FileResource(filename);
         for (CSVRecord row: fr.getCSVParser()) {
         	try {
-            Rater rater = new Rater(row.get("rater_id"));
+            Rater rater = new PlainRater(row.get("rater_id"));
             int raterKey = indexOf(rater, raters);
             
             if(raterKey == -1) {
