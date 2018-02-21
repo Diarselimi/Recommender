@@ -25,7 +25,8 @@ public class Runner {
 //		mwf.printAverageRatingsByGenre();
 //		mwf.printAverageRatingsByMinutes();
 //		mwf.printAverageRatingsByDirectors();
-		mwf.printAverageRatingsByYearAfterAndGenre();
+//		mwf.printAverageRatingsByYearAfterAndGenre();
+		mwf.printAverageRatingsByDirectorsAndMinutes();
 	}
 
 }

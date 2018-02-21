@@ -73,6 +73,18 @@ public class MovieRunnerWithFilters {
 		}
 	}
 	
+	public void printAverageRatingsByDirectorsAndMinutes() {
+		AllFilters fil = new AllFilters();
+		fil.addFilter(new MinutesFilter(30, 170));
+		fil.addFilter(new DirectorsFilter("Spike Jonze,Michael Mann,Charles Chaplin,Francis Ford Coppola"));
+		ArrayList<Rating> ratings = getAverageRatingsByFilter(1, fil);
+		Collections.sort(ratings);
+		// Print the number of movies found, and for each movie, print its rating, its time length, and its title on one line, and all its directors on the next line.
+		for(Rating rating: ratings) {
+			System.out.println("Avarage rating for "+MovieDatabase.getTitle(rating.getItem())+" is "+rating.getValue()+" "+MovieDatabase.getTitle(rating.getItem())+ " \n "+MovieDatabase.getDirector(rating.getItem()));
+		}
+	}
+	
 	public ArrayList<Rating> getAverageRatingsByFilter(int minimalRaters, Filter filterCriteria) {
 		MovieDatabase.initialize("ratedmovies_short.csv");
 		ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
