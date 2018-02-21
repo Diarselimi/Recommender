@@ -20,12 +20,12 @@ public class Runner {
 //		mra.getAverageRatingOneMovie();
 		
 		MovieRunnerWithFilters mwf = new MovieRunnerWithFilters();
-//		mwf.printAverageRatings();
-//		mwf.printAverageRatingsByYear();
-//		mwf.printAverageRatingsByGenre();
-//		mwf.printAverageRatingsByMinutes();
-//		mwf.printAverageRatingsByDirectors();
-//		mwf.printAverageRatingsByYearAfterAndGenre();
+		mwf.printAverageRatings();
+		mwf.printAverageRatingsByYear();
+		mwf.printAverageRatingsByGenre();
+		mwf.printAverageRatingsByMinutes();
+		mwf.printAverageRatingsByDirectors();
+		mwf.printAverageRatingsByYearAfterAndGenre();
 		mwf.printAverageRatingsByDirectorsAndMinutes();
 	}
 
