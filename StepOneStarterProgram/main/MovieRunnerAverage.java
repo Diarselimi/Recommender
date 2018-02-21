@@ -1,6 +1,5 @@
+package main;
 import java.util.*;
-
-import main.Rating;
 
 public class MovieRunnerAverage {
 	

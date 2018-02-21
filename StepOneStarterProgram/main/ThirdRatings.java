@@ -1,9 +1,7 @@
+package main;
 import java.util.ArrayList;
 
 import filter.TrueFilter;
-import main.Movie;
-import main.Rater;
-import main.Rating;
 
 public class ThirdRatings {
 	    private ArrayList<Rater> myRaters;

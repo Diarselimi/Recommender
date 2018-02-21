@@ -1,9 +1,9 @@
+package main;
 
 
 import java.util.*;
 import org.apache.commons.csv.*;
 import edu.duke.FileResource;
-import main.Movie;
 import filter.*;
 
 

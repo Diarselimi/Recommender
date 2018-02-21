@@ -1,3 +1,4 @@
+package main;
 import edu.duke.*;
 import filter.*;
 

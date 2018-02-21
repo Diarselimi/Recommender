@@ -1,3 +1,4 @@
+package main;
 
 public class Runner {
 
@@ -19,7 +20,8 @@ public class Runner {
 //		mra.getAverageRatingOneMovie();
 		
 		MovieRunnerWithFilters mwf = new MovieRunnerWithFilters();
-		mwf.printAverageRatings();
+//		mwf.printAverageRatings();
+		mwf.printAverageRatingsByYear();
 	}
 
 }

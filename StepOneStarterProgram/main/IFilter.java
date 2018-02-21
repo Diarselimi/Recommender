@@ -1,3 +1,4 @@
+package main;
 
 /**
  * Write a description of IFilter here.
