@@ -21,7 +21,8 @@ public class Runner {
 		
 		MovieRunnerWithFilters mwf = new MovieRunnerWithFilters();
 //		mwf.printAverageRatings();
-		mwf.printAverageRatingsByYear();
+//		mwf.printAverageRatingsByYear();
+		mwf.printAverageRatingsByGenre();
 	}
 
 }
