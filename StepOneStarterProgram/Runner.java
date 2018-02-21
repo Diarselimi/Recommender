@@ -14,9 +14,12 @@ public class Runner {
 		
 //		fr.testLoadRaters();
 		
-		MovieRunnerAverage mra = new MovieRunnerAverage();
-		mra.printAverageRatings();
-		mra.getAverageRatingOneMovie();
+//		MovieRunnerAverage mra = new MovieRunnerAverage();
+//		mra.printAverageRatings();
+//		mra.getAverageRatingOneMovie();
+		
+		MovieRunnerWithFilters mwf = new MovieRunnerWithFilters();
+		mwf.printAverageRatings();
 	}
 
 }
