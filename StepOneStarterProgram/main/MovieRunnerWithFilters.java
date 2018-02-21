@@ -1,6 +1,5 @@
 package main;
 import java.util.*;
-
 import filter.*;
 
 public class MovieRunnerWithFilters {
@@ -59,6 +58,18 @@ public class MovieRunnerWithFilters {
 		
 		for(Rating rating: ratings) {
 			System.out.println("Avarage rating for "+MovieDatabase.getTitle(rating.getItem())+" is "+rating.getValue()+" "+MovieDatabase.getDirector(rating.getItem()));
+		}
+	}
+	
+	public void printAverageRatingsByYearAfterAndGenre() {
+		AllFilters fil = new AllFilters();
+		fil.addFilter(new GenreFilter("Romance"));
+		fil.addFilter(new YearAfterFilter(1980));
+		ArrayList<Rating> ratings = getAverageRatingsByFilter(1, fil);
+		Collections.sort(ratings);
+		
+		for(Rating rating: ratings) {
+			System.out.println("Avarage rating for "+MovieDatabase.getTitle(rating.getItem())+" is "+rating.getValue()+" \n"+MovieDatabase.getGenres(rating.getItem()));
 		}
 	}
 	
