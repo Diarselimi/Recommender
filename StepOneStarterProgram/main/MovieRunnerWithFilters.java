@@ -52,6 +52,16 @@ public class MovieRunnerWithFilters {
 		}
 	}
 	
+	public void printAverageRatingsByDirectors() {
+		Filter filter = new DirectorsFilter("Charles Chaplin,Michael Mann,Spike Jonze");
+		ArrayList<Rating> ratings = getAverageRatingsByFilter(1, filter);
+		Collections.sort(ratings);
+		
+		for(Rating rating: ratings) {
+			System.out.println("Avarage rating for "+MovieDatabase.getTitle(rating.getItem())+" is "+rating.getValue()+" "+MovieDatabase.getDirector(rating.getItem()));
+		}
+	}
+	
 	public ArrayList<Rating> getAverageRatingsByFilter(int minimalRaters, Filter filterCriteria) {
 		MovieDatabase.initialize("ratedmovies_short.csv");
 		ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
