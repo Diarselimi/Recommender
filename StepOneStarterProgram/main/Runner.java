@@ -21,12 +21,14 @@ public class Runner {
 		
 		MovieRunnerWithFilters mwf = new MovieRunnerWithFilters();
 		mwf.printAverageRatings();
-		mwf.printAverageRatingsByYear();
-		mwf.printAverageRatingsByGenre();
-		mwf.printAverageRatingsByMinutes();
-		mwf.printAverageRatingsByDirectors();
-		mwf.printAverageRatingsByYearAfterAndGenre();
-		mwf.printAverageRatingsByDirectorsAndMinutes();
+//		mwf.printAverageRatingsByYear();
+//		mwf.printAverageRatingsByGenre();
+//		mwf.printAverageRatingsByMinutes();
+//		mwf.printAverageRatingsByDirectors();
+//		mwf.printAverageRatingsByYearAfterAndGenre();
+//		mwf.printAverageRatingsByDirectorsAndMinutes();
+		MovieRunnerSimilarRatings mrs = new MovieRunnerSimilarRatings();
+		mrs.printAverageRatings();
 	}
 
 }

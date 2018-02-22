@@ -1,25 +1,16 @@
 package main;
 import java.util.ArrayList;
 
+import filter.Filter;
 import filter.TrueFilter;
 
 public class ForthRatings {
-	    private ArrayList<Rater> myRaters;
 	    
 	    public ForthRatings() {
-	    	  this("ratings.csv");
+	    		RaterDatabase.initialize("ratings.csv");
+	    		MovieDatabase.initialize("ratedmoviesfull.csv");
 	    	}
 	    
-		public ForthRatings(String filename) {
-			FirstRatings first = new FirstRatings();	
-			myRaters = first.loadRaters(filename);
-		}	
-		
-		
-		public int getRaterSize(){
-			return myRaters.size();
-		}
-		
 		public ArrayList<Rating> getAverageRatings(int minimalRaters) {
 			ArrayList<Rating> moviesAvgRatings = new ArrayList<Rating>();
 			ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());
@@ -38,7 +29,7 @@ public class ForthRatings {
 		private double getAverageByID(String movieId, int minimalRaters) {
 			double avg = 0.0;
 			ArrayList<Double> ratings = new ArrayList<Double>(); 
-			for(Rater rater: myRaters) {
+			for(Rater rater: RaterDatabase.getRaters()) {
 				if(rater.getItemsRated().contains(movieId)) {
 					ratings.add(rater.getRating(movieId));
 				}
@@ -52,5 +43,26 @@ public class ForthRatings {
 			}
 			
 			return avg;
+		}
+		
+		public ArrayList<Rating> getAverageRatingsByFilter(int minimalRaters, Filter filterCriteria) {
+			
+			ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
+			ArrayList<Rating> output = new ArrayList<Rating>();
+			
+			System.out.println("Total raters are: "+RaterDatabase.size());
+			ArrayList<Rating> ratingsAVG = getAverageRatings(minimalRaters);
+			System.out.println("Total movies in DB: "+MovieDatabase.size());
+			
+			
+			for(Rating rating: ratingsAVG) {
+				if(movies.contains(rating.getItem())) {
+					output.add(rating);
+				}
+			}
+			System.out.println("Total ratings are:"+output.size()+" \n -----------");
+			
+			return output;
+			
 		}
 }
