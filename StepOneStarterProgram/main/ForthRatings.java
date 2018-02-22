@@ -65,4 +65,15 @@ public class ForthRatings {
 			return output;
 			
 		}
+		
+		private ArrayList<Rating> dotProduct(Rater me, Rater r) {
+			ArrayList<Rating> dotProduct = new ArrayList<Rating>();
+			for(String movie: me.getItemsRated()) {
+				if(r.getRating(movie) > 0) {
+					double product = (r.getRating(movie) - 5) * (me.getRating(movie) - 5);
+					dotProduct.add(new Rating(movie, product));
+				}
+			}
+			return dotProduct;
+		}
 }
