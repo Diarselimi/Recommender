@@ -33,4 +33,12 @@ public class MovieRunnerSimilarRatings {
 //			System.out.println("Avarage rating for "+MovieDatabase.getTitle(rating.getItem())+" is "+rating.getValue()+" "+MovieDatabase.getGenres(rating.getItem()));
 //		}
 	}
+	
+	public void printSimilarRatings() {
+		ForthRatings fRatings = new ForthRatings();
+		ArrayList<Rating> ratings = fRatings.getSimilarRatings("65", 20, 5);
+		for(Rating r: ratings) {
+			System.out.println("The movie recommended for you is:"+MovieDatabase.getTitle(r.getItem())+" with weight:"+r.getValue());
+		}
+	}
 }

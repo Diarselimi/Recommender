@@ -1,7 +1,9 @@
 package main;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import filter.Filter;
+import filter.MinimumRatingsFilter;
 import filter.TrueFilter;
 
 public class ForthRatings {
@@ -66,14 +68,54 @@ public class ForthRatings {
 			
 		}
 		
-		private ArrayList<Rating> dotProduct(Rater me, Rater r) {
-			ArrayList<Rating> dotProduct = new ArrayList<Rating>();
-			for(String movie: me.getItemsRated()) {
-				if(r.getRating(movie) > 0) {
-					double product = (r.getRating(movie) - 5) * (me.getRating(movie) - 5);
-					dotProduct.add(new Rating(movie, product));
+		public ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters) 
+		{
+			ArrayList<Rating> list = new ArrayList<Rating>();
+			ArrayList<Rating> similarities = getSimilarities(id);
+			
+			for(String movieId: MovieDatabase.filterBy(new TrueFilter())) {
+				// find the total ratings for this movie 
+				double weighted = 0;
+				int counter = 0;
+				for(int k=0; k < numSimilarRaters; k++) {
+					Rating r = similarities.get(k);// i have here, raterID and weight
+					if(RaterDatabase.getRater(r.getItem()).hasRating(movieId)) {
+						weighted += RaterDatabase.getRater(r.getItem()).getRating(movieId) * r.getValue();
+						counter ++;
+					}
+				}
+				double avg= weighted/counter;
+				if(avg> 0 && counter >= minimalRaters) {
+					list.add(new Rating(movieId, avg));
 				}
 			}
-			return dotProduct;
+			Collections.sort(list, Collections.reverseOrder());
+			return list;
+		}
+		
+		private ArrayList<Rating> getSimilarities(String id) {
+			ArrayList<Rating> list = new ArrayList<Rating>();
+			Rater me = RaterDatabase.getRater(id);
+			for(Rater r: RaterDatabase.getRaters()) {
+				if(!r.getID().equals(id)) {
+					Rating dotProduct = dotProduct(me, r);
+					if(dotProduct.getValue() > 0) {
+						list.add(dotProduct);
+					}
+				}
+			}
+			Collections.sort(list, Collections.reverseOrder());
+			
+			return list;
+		}
+		
+		private Rating dotProduct(Rater me, Rater r) {
+			double product = 0;
+			for(String movie: me.getItemsRated()) {
+				if(r.getRating(movie) > 0) {
+					product += (r.getRating(movie) - 5) * (me.getRating(movie) - 5);
+				}
+			}
+			return new Rating(r.getID(), product);
 		}
 }
