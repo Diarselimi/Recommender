@@ -16,7 +16,6 @@ public class MovieRunnerSimilarRatings {
 	public void printAverageRatings() 
 	{
 		ForthRatings ratings = new ForthRatings();
-		
 		ArrayList<Rating> ratingsAVG = ratings.getAverageRatings(35);
 		Collections.sort(ratingsAVG);
 
@@ -41,7 +40,7 @@ public class MovieRunnerSimilarRatings {
 	
 	public void printSimilarRatings() {
 		ForthRatings fRatings = new ForthRatings();
-		ArrayList<Rating> ratings = fRatings.getSimilarRatings("65", 20, 5, new TrueFilter());
+		ArrayList<Rating> ratings = fRatings.getSimilarRatings("71", 20, 5, new TrueFilter());
 		for(Rating r: ratings) {
 			System.out.println("The movie recommended for you is:"+MovieDatabase.getTitle(r.getItem())+" with weight:"+r.getValue());
 		}
@@ -49,7 +48,7 @@ public class MovieRunnerSimilarRatings {
 	
 	public void printSimilarRatingsByGenre() {
 		ForthRatings fRatings = new ForthRatings();
-		ArrayList<Rating> ratings = fRatings.getSimilarRatings("65", 20, 5, new GenreFilter("Action"));
+		ArrayList<Rating> ratings = fRatings.getSimilarRatings("964", 20, 5, new GenreFilter("Mystery"));
 		for(Rating r: ratings) {
 			System.out.println("The movie recommended for you is:"+MovieDatabase.getTitle(r.getItem())+" with weight:"+r.getValue());
 		}
@@ -57,7 +56,7 @@ public class MovieRunnerSimilarRatings {
 	
 	public void printSimilarRatingsByDirector() {
 		ForthRatings fRatings = new ForthRatings();
-		ArrayList<Rating> ratings = fRatings.getSimilarRatings("1034", 10, 3, new DirectorsFilter("Clint Eastwood,Sydney Pollack,David Cronenberg,Oliver Stone"));
+		ArrayList<Rating> ratings = fRatings.getSimilarRatings("120", 10, 2, new DirectorsFilter("Clint Eastwood,J.J. Abrams,Alfred Hitchcock,Sydney Pollack,David Cronenberg,Oliver Stone,Mike Leigh"));
 		for(Rating r: ratings) {
 			System.out.println("The movie recommended for you is:"+MovieDatabase.getTitle(r.getItem())+" with weight:"+r.getValue());
 		}
@@ -66,9 +65,9 @@ public class MovieRunnerSimilarRatings {
 	public void printSimilarRatingsByGenreAndMinutes() {
 		ForthRatings fRatings = new ForthRatings();
 		AllFilters filters = new AllFilters();
-		filters.addFilter(new GenreFilter("Adventure"));
-		filters.addFilter(new MinutesFilter(100, 200));
-		ArrayList<Rating> ratings = fRatings.getSimilarRatings("65", 10, 5, filters);
+		filters.addFilter(new GenreFilter("Drama"));
+		filters.addFilter(new MinutesFilter(80, 160));
+		ArrayList<Rating> ratings = fRatings.getSimilarRatings("168", 10, 3, filters);
 		for(Rating r: ratings) {
 			System.out.println("The movie recommended for you is:"+MovieDatabase.getTitle(r.getItem())+" with weight:"+r.getValue());
 		}
@@ -77,9 +76,9 @@ public class MovieRunnerSimilarRatings {
 	public void printSimilarRatingsByYearAfterAndMinutes() {
 		ForthRatings fRatings = new ForthRatings();
 		AllFilters filters = new AllFilters();
-		filters.addFilter(new YearAfterFilter(2000));
-		filters.addFilter(new MinutesFilter(80, 100));
-		ArrayList<Rating> ratings = fRatings.getSimilarRatings("65", 10, 5, filters);
+		filters.addFilter(new YearAfterFilter(1975));
+		filters.addFilter(new MinutesFilter(70, 200));
+		ArrayList<Rating> ratings = fRatings.getSimilarRatings("314", 10, 5, filters);
 		for(Rating r: ratings) {
 			System.out.println("The movie recommended for you is:"+MovieDatabase.getTitle(r.getItem())+" with weight:"+r.getValue());
 		}
