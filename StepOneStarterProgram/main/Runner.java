@@ -30,10 +30,13 @@ public class Runner {
 		MovieRunnerSimilarRatings mrs = new MovieRunnerSimilarRatings();
 //		mrs.printAverageRatings();
 //		mrs.printSimilarRatings();
-		mrs.printSimilarRatingsByGenre();
+//		mrs.printSimilarRatingsByGenre();
 //		mrs.printSimilarRatingsByDirector();
 //		mrs.printSimilarRatingsByGenreAndMinutes();
 //		mrs.printSimilarRatingsByYearAfterAndMinutes();
+		
+		RecommendationRunner runn = new RecommendationRunner();
+		runn.printRecommendationsFor("71");
 	}
 
 }
