@@ -68,12 +68,13 @@ public class ForthRatings {
 			
 		}
 		
-		public ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters) 
+		public ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters, Filter filter) 
 		{
+			
 			ArrayList<Rating> list = new ArrayList<Rating>();
 			ArrayList<Rating> similarities = getSimilarities(id);
 			
-			for(String movieId: MovieDatabase.filterBy(new TrueFilter())) {
+			for(String movieId: MovieDatabase.filterBy(filter)) {
 				// find the total ratings for this movie 
 				double weighted = 0;
 				int counter = 0;

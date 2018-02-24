@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import filter.Filter;
 import filter.GenreFilter;
+import filter.TrueFilter;
 
 public class MovieRunnerSimilarRatings {
 	
@@ -36,7 +37,15 @@ public class MovieRunnerSimilarRatings {
 	
 	public void printSimilarRatings() {
 		ForthRatings fRatings = new ForthRatings();
-		ArrayList<Rating> ratings = fRatings.getSimilarRatings("65", 20, 5);
+		ArrayList<Rating> ratings = fRatings.getSimilarRatings("65", 20, 5, new TrueFilter());
+		for(Rating r: ratings) {
+			System.out.println("The movie recommended for you is:"+MovieDatabase.getTitle(r.getItem())+" with weight:"+r.getValue());
+		}
+	}
+	
+	public void printSimilarRatingsByGenre() {
+		ForthRatings fRatings = new ForthRatings();
+		ArrayList<Rating> ratings = fRatings.getSimilarRatings("65", 20, 5, new GenreFilter("Action"));
 		for(Rating r: ratings) {
 			System.out.println("The movie recommended for you is:"+MovieDatabase.getTitle(r.getItem())+" with weight:"+r.getValue());
 		}

@@ -29,7 +29,8 @@ public class Runner {
 //		mwf.printAverageRatingsByDirectorsAndMinutes();
 		MovieRunnerSimilarRatings mrs = new MovieRunnerSimilarRatings();
 //		mrs.printAverageRatings();
-		mrs.printSimilarRatings();
+//		mrs.printSimilarRatings();
+		mrs.printSimilarRatingsByGenre();
 	}
 
 }
